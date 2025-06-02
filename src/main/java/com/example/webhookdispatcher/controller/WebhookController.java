@@ -1,4 +1,4 @@
-package com.example.webhookdispatcher.infrastructure.controller;
+package com.example.webhookdispatcher.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
