@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  webhook-dispatcher:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: webhook-dispatcher
+    ports:
+      - "8081:8081"
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://host.docker.internal:5432/webhookdb
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres
+      - SPRING_RABBITMQ_HOST=host.docker.internal
+      - SPRING_RABBITMQ_PORT=5672
+      - SPRING_RABBITMQ_USERNAME=guest
+      - SPRING_RABBITMQ_PASSWORD=guest
+    restart: unless-stopped
+
+networks:
+  webhook-network:
+    driver: bridge
